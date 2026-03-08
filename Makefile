@@ -44,15 +44,15 @@ CFLAGS_klipper.elf = $(CFLAGS) -Wl,--gc-sections -Wl,-Map,out/klipper.map
 
 CPPFLAGS = -I$(OUT) -P -MD -MT $@
 
-CR_BUILD_OBJ += $(OUT)src/prtouch_v3.o #\
+#CR_BUILD_OBJ += $(OUT)src/prtouch_v3.o \
 			 #$(OUT)src/z_align.o
 			 
 
 # Default targets
 target-y := $(OUT)klipper.elf
-target-y += $(OUT)hostCrc16.elf
+#target-y += $(OUT)hostCrc16.elf
 # target-y += $(OUT)src/prtouch_v2.o
-target-y += $(CR_BUILD_OBJ)
+#target-y += $(CR_BUILD_OBJ)
 
 all:
 
