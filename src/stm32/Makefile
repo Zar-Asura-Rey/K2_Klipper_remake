@@ -100,6 +100,24 @@ endif
 # Binary output file rules
 target-y += $(OUT)klipper.bin
 
+#$(OUT)klipper.hex: $(OUT)klipper.bin
+#	@echo " Creating hex file $@"
+#	$(Q)$(OBJCOPY) -l binary -O ihex $< $@
+
+ifeq ($(CONFIG_MACH_STM32F4),y)
+$(OUT)src/prtouch_v3.o:
+	$(Q)cp src/prtouch_v3.o $@
+
+$(OUT)src/z_align.o:
+	$(Q)cp src/z_align.o $@
+endif
+
+# ifeq ($(CONFIG_MACH_GD32E23X),y)
+# $(OUT)src/prtouch_v2.o: 
+# 	$(Q)cp src/prtouch_v2_cm23.o $@
+# endif
+
+
 $(OUT)klipper.bin: $(OUT)klipper.elf $(OUT)hostCrc16.elf
 	@echo "  Creating hex file $@"
 	$(Q)$(OBJCOPY) -O binary $< $@
